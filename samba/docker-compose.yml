@@ -1,0 +1,13 @@
+version: '3'
+services:
+  samba:
+    image: dperson/samba
+    container_name: skynet-samba
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - WORKGROUP=WORKGROUP
+      - USER=admin;admin
+      - SHARE=share;/media/drive-1;yes;no;no;admin;admin;admin;admin
+    volumes:
+      - /media/drive-1:/media/drive-1

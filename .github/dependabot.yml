@@ -27,6 +27,7 @@ updates:
       security:
         applies-to: security-updates
         patterns: ["*"]
+    # Template default: a major Postgres or PostGIS bump needs a manual data migration.
     ignore:
       - dependency-name: "postgres"
         update-types: ["version-update:semver-major"]

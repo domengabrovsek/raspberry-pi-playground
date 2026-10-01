@@ -17,7 +17,7 @@ services:
     ports:
       - "9090:9090"
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor-arm:v0.47.2
+    image: gcr.io/cadvisor/cadvisor-arm:v0.99
     container_name: skynet-cadvisor
     volumes:
       - /:/rootfs:ro

@@ -1,0 +1,35 @@
+# One monthly pull request with every version update across all ecosystems, plus
+# one grouped pull request per ecosystem for security fixes. Same file in every repo.
+version: 2
+
+multi-ecosystem-groups:
+  dependencies:
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: chore
+      include: scope
+    labels:
+      - dependencies
+
+updates:
+  - package-ecosystem: docker-compose
+    directories:
+      - /homeassistant
+      - /monitoring
+      - /pihole
+      - /samba
+    patterns: ["*"]
+    multi-ecosystem-group: dependencies
+    cooldown:
+      default-days: 7
+    groups:
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
+    # Template default: a major Postgres or PostGIS bump needs a manual data migration.
+    ignore:
+      - dependency-name: "postgres"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "*/postgis"
+        update-types: ["version-update:semver-major"]
